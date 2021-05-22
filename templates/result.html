@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Movement Pass</title>
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{ url_for('static', filename='js/states.js') }}"></script>
+    </head>
+    <body>
+        <div class="header">
+            <center><img src="{{ url_for('static', filename='imgs/logo_official.png') }}"class="logo ml-5"></center>
+            <i><h2>{{res}}</h2></i>
+            {% if res=="" %}
+                <h3 class="noPrint">Dear {{name}}, your application for a pass to travel between {{sdist}}, {{sstate}} and {{ddist}}, {{dstate}} has been approved</h3>
+                <center><h3 class="onlyPrint"><i>Travel Pass</i></h3></center>
+                <table class="table table-pass onlyPrint">
+                    <tr>
+                        <td>Pass ID</td>
+                        <td>{{id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Source</td>
+                        <td>{{sdist}}, {{sstate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Destination</td>
+                        <td>{{ddist}}, {{dstate}}</td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td>{{fdate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Till</td>
+                        <td>{{tdate}}</td>
+                    </tr>
+                </table>
+                <h6 class="mt-4">
+                    <p>Note(s):</p>
+                    <p>All the COVID-19 precautionary measures must be followed at all times.</p>
+                    <p>This pass is only valid for the days specified above and is not transferable.</p>
+                </h6>
+                <center>
+                    <button class="btn btn-pass noPrint" onclick="window.print()">Print</button>
+                    <a class="btn btn-pass noPrint" href="/">Home</a>
+                </center>
+            {% endif %}
+        </div>
+    </body>
+
+    
+</html>

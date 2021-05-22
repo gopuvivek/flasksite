@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Movement Pass</title>
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{ url_for('static', filename='js/states.js') }}"></script>
+        <script type="text/javascript">
+            window.onload = function()
+            {
+                stateOptions="";
+                for(state in states)
+                {
+                    stateOptions+="<option>"+state+"</option>";
+                }
+                document.getElementById(`sstate`).innerHTML+= "<option>Andhra Pradesh</option>";
+                document.getElementById(`dstate`).innerHTML+= stateOptions;
+            }
+            var distByState = states;
+            function makeSubmenu(value,s) {
+            if(value.length==0) document.getElementById(`${s}dist`).innerHTML = "<option></option>";
+            else {
+            var distOptions = "";
+            for(dist in distByState[value]) {
+            distOptions+="<option>"+distByState[value][dist]+"</option>";
+            }
+            document.getElementById(`${s}dist`).innerHTML = distOptions;
+            }
+            }
+            function resetSelection() {
+            document.getElementById("countrySelect").selectedIndex = 0;
+            document.getElementById("citySelect").selectedIndex = 0;
+            }
+            </script>
+    </head>
+    <body>
+        <div class="header">
+            <img src="{{ url_for('static', filename='imgs/logo_official.png') }}"class="logo">
+            <h1>Welcome, please fill the information below to obtain pass for movement within and outside the state of Andhra Pradesh</h1>
+        </div>
+        <div class="inform">
+            <form method="post" action="getPass" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="name" id="name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-sm-4 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" name="email" id="email" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="phone" class="col-sm-4 col-form-label">Phone</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" name="phone" id="phone" required>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="sstate" class="col-sm-4 col-form-label">Source State</label>
+                    <div class="col-sm-8">
+                        <select class="form-select " id="sstate" name="sstate" onchange="makeSubmenu(this.value,'s')">
+                            <option value="" disabled selected>Choose State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="sdist" class="col-sm-4 col-form-label">Source District</label>
+                    <div class="col-sm-8">
+                        <select class="form-select " id="sdist" name="sdist">
+                            <option value="" disabled selected>Choose District</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dstate" class="col-sm-4 col-form-label">Destination State</label>
+                    <div class="col-sm-8">
+                        <select class="form-select " id="dstate" name="dstate" onchange="makeSubmenu(this.value,'d')">
+                            <option value="" disabled selected>Choose State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="ddist" class="col-sm-4 col-form-label">Destination District</label>
+                    <div class="col-sm-8">
+                        <select class="form-select" id="ddist" name="ddist">
+                            <option value="" disabled selected>Choose District</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                <div class="form-group row">
+                    <label for="fdate" class="col-sm-4 col-form-label">From</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="fdate" name="fdate" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tdate" class="col-sm-4 col-form-label">Till</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="tdate" name="tdate" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="reason" class="col-sm-4 col-form-label">Reason of Travel</label>
+                    <div class="col-sm-8">
+                        <textarea type="textarea" class="form-control" id="reason" name="reason" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div>
+                      <center><button type="submit" class="btn btn-pass">Submit</button></center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+    <div id="google_translate_element"></div>
+    
+    
+</html>
